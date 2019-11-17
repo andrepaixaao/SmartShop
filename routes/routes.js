@@ -4,6 +4,14 @@ var router = express.Router();
 
 // TODO: Some repetition here on the error handling... 
 
+
+/* GET home page. */
+router.get('/', function (req, res, next) {
+  res.render('./index.html', { title: 'Index' });
+});
+
+
+
 router.get('/', function(req, res, next) {
     SmartShopDAO.getItems(function(err,result){
         if (err) {
