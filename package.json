@@ -2,15 +2,15 @@
   "name": "projetoweb",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "hbs": "^4.0.6",
-    "mysql": "^2.17.1"
+    "mysql": "^2.17.1",
+    "node": "^13.1.0"
   }
 }
