@@ -10,8 +10,8 @@ var app=express();
 
 app.use('/', smartShopRouter)
 
-app.set('view engine', 'html');
-app.engine('html', require('hbs').__express);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -36,4 +36,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-© 2019 GitHub, Inc.
