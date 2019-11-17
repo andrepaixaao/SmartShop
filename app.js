@@ -7,21 +7,19 @@ var logger = require('morgan');
 var smartShopRouter=require("./routes/routes");
 var app=express();
 
-app.use(logger('dev'));
-
-app.listen();
 
 app.use('/smartshoprouter', smartShopRouter)
 
+app.set('view engine', 'html');
+app.engine('html', require('hbs').__express);
+
+app.use(logger('dev'));
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: false }));
-
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next) {
-    next(createError(404));
-  });
+
 
 
   module.exports = app;
