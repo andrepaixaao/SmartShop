@@ -8,7 +8,7 @@ var smartShopRouter=require("./routes/routes");
 var app=express();
 
 
-app.use('/smartshoprouter', smartShopRouter)
+app.use('/', smartShopRouter)
 
 app.set('view engine', 'html');
 app.engine('html', require('hbs').__express);
