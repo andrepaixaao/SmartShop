@@ -42,25 +42,24 @@ module.exports.newUtilizadores = function(utilizador,nome,password,callback, nex
 
 }
 
-module.exports.getItems = function(callback, next) {
-    pool.getConnection(function(err,conn){  
+
+module.exports.getItems = function (callback, next) {
+    pool.getConnection(function(err,conn){
         if (err) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
         }
-        pool.query("select * from Produto", function(err, results) {
+        conn.query("select * from Produto", function(err, results) {
             console.log(results);
             // VERY IMPORTANT: Always release a connection after you don't need it
             // You can make more then one query but in the last one release it
-            pool.releaseConnection;
+            conn.release();
             if (err) {
                 callback(err,{code: 500, status: "Error in a database query"})
                 return;
             } 
             callback(false, {code: 200, status:"ok", data: results})
         })
-       
     })
-
 }
 
 
