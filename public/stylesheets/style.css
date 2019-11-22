@@ -7,7 +7,7 @@ body{
 
     font-family: arial;
 
-    background-color:#ffffb3;
+    background-color:white;
 
 }
 
@@ -308,7 +308,7 @@ body{
     margin-top:10px;
     display: grid;
     width:70%;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
     grid-gap: 10px;
     color: #444;
     float:left;
@@ -318,7 +318,7 @@ body{
   
   .box {
     color: black;
-    font-size: 120%;
+    font-size: 100%;
     text-align:center;
     display:inline-block;
     font-family: "Roboto", sans-serif;
@@ -338,9 +338,9 @@ body{
     text-transform: uppercase;
     outline: 0;
     background: #4CAF50;
-    width: 50%;
+    width: 160px;
     border: 0;
-    padding: 5px;
+    padding: 6px;
     border-radius: 15px;  
     color: #ffffff;
     font-size: 70%;
