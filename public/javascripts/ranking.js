@@ -1,9 +1,10 @@
 window.onload=function(){
     var campoUtilizador=document.getElementById("textUtilizador");
     campoUtilizador.innerHTML="<p class='Util'>Utilizador: <br>"+sessionStorage.getItem('Utilizador')+"</p>";
-    var tabela=document.getElementById("Carrinho");
+    var tabela=document.getElementById("Ranking");
+    var rank=1;
     $.ajax({
-        url:"/api/carrinho/"+sessionStorage.getItem('Utilizador'),
+        url:"/api/ranking/"+sessionStorage.getItem('Utilizador'),
         method:"get",   
         // sending in json
         contentType:"application/json",
@@ -13,9 +14,11 @@ window.onload=function(){
                 console.log(JSON.stringify(res));
                 return;
             }
-            var html = "<tr><th>Artigo</th><th>Quantidade</th><th>Preço Médio dos Artigo</th><th>Preco Total</th></tr>";
+            var html = "<tr><th>Ranking</th><th>Supermercado</th><th>Preco Total</th></tr>";
             for(i in res)  {
-                html += "<tr><td>"+res[i].nomeProduto+"</td><td>"+res[i].quantidade+"</td><td>"+res[i].preco+" € </td><td>"+res[i].precototal+" € </td><td></tr>";
+                
+                html += "<tr><td>"+rank+" º </td><td>"+res[i].nome+"</td><td>"+res[i].precoTotal+" € </td></tr>";
+                rank++;
 
             }
             tabela.innerHTML = html;
