@@ -12,6 +12,10 @@ router.get('/carrinho', function(req, res, next) {
   res.render('carrinho', { title: 'Carrinho' });
 });
 
+router.get('/register', function(req, res, next) {
+  res.render('register', { title: 'Carrinho' });
+});
+
 router.get('/login', function(req, res, next) {
   res.render('indexLogin', { title: 'SmartShop' });
 });

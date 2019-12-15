@@ -1,4 +1,6 @@
 window.onload=function(){
+    var campoUtilizador=document.getElementById("textUtilizador");
+    campoUtilizador.innerHTML="<p class='Util'>Utilizador: <br>"+sessionStorage.getItem('Utilizador')+"</p>";
     var tabela = document.getElementById("wrapper");
     $.ajax({
         url:"/api/produtos",
@@ -15,8 +17,7 @@ window.onload=function(){
             }
             var html = "";
             for(i in res)  {
-                console.log(res[i]);
-                html += "<div class=box b>"+"<img src='"+res[i].imagemProduto+"'>" + res[i].nomeProduto +"<input type='button' value='Adicionar ao Carrinho' id='"+res[i].idProduto+"' onclick=''> <input type='button' value='Ver Produto' id='"+res[i].idProduto+"' onclick=''></div>";           
+                html += "<div class=box b>"+"<img src='"+res[i].imagemProduto+"'>" + res[i].nomeProduto +"<input type='button' value='Adicionar ao Carrinho' id='"+res[i].idProduto+"' onclick='addCarrinho("+res[i].idProduto+")'> <input type='button' value='Ver Produto' id='"+res[i].idProduto+"' onclick=''></div>";           
 
             }
             tabela.innerHTML = html;
@@ -27,4 +28,30 @@ window.onload=function(){
         }   
     })
 }
+
+
+function addCarrinho(idProduto)
+{
+    console.log(idProduto);
+    console.log(sessionStorage.getItem('Utilizador'));
+    console.log("entrei");
+    $.ajax({
+        url:"/api/produtos/addProdutos",
+        method : "post",
+        contentType : "application/json",
+        data : JSON.stringify({
+            produto:idProduto,
+            username: sessionStorage.getItem('Utilizador'),
+            }),
+        
+        success: function(res, status){ 
+          //
+        }
+        
+        , error : function() { alert(JSON.stringify('error')); }
+        
+        });
+    }
+
+
 

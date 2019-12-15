@@ -16,15 +16,43 @@
             var html = "";
             for(i in res)  {
                 console.log(res[i]);
-                html += "<div class=box b>"+"<img src='"+res[i].imagemProduto+"'>" + res[i].nomeProduto +"<input type='button' value='Adicionar ao Carrinho' id='"+res[i].idProduto+"' onclick=''> <input type='button' value='Ver Produto' id='"+res[i].idProduto+"' onclick=''></div>";           
+                html += "<div class=box b>"+"<img src='"+res[i].imagemProduto+"'>" + res[i].nomeProduto +"<input type='button'  value='Adicionar ao Carrinho' id='"+res[i].idProduto+"' onclick=''> <input type='button' value='Ver Produto' id='"+res[i].idProduto+"' onclick=''></div>";           
 
             }
             tabela.innerHTML = html;
         },
-        error: function(jqXHR, errStr, errThrown) {
-            console.log("mas estou aqui");  
+        error: function(jqXHR, errStr, errThrown) {  
             console.log(errStr);
         }
     })
 }
+
+
+function checkUtilizador()
+{
+    console.log("oi galera");
+    var utilizador=document.getElementById("username").value;
+    var password=document.getElementById("password").value;
+
+    $.ajax({
+        url: "/api/utilizador",
+        method : "post",
+        contentType : "application/json",
+        data : JSON.stringify({ 
+                username: utilizador,
+                password: password,
+            }),
+        
+        success: function(res, status){ 
+            sessionStorage.setItem("Utilizador",utilizador);
+            window.location.href='/Login';
+          
+          //
+        }
+        
+        , error : function() { alert(JSON.stringify('error')); }
+        
+        });
+    }
+
 

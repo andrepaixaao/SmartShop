@@ -2,13 +2,14 @@
 
 <head>
 	<link rel="stylesheet" href="./stylesheets/style.css">
+	<script src="./javascripts/carrinho.js"></script>
+		        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
-	<title> SmartShop</title>
 	<div class="headerHome">
 		<div class="navBar">
-			<a href="login">SmartShop</a>
+			<a href="Login">SmartShop</a>
 			<div class="search">
 				<form>
 					<input type="text" placeholder="...">
@@ -21,16 +22,17 @@
 		</div>
 		<div class="login-box">
 			<div class="form">
-				<img src="user.png">
-				<p class="Util">Nome de Utilizador: Teste </p>
-                
+				<img src="./images/user.png">
+				<div id="textUtilizador">
+				</div>
+                <input id="carrinho" type="button" value="Carrinho" onclick="location.href='carrinho';" />
 			</div>
 		</div>
 	</div>
 
 	<div class="drop">
 		<ul class="drop_menu">
-			<li><a href='#'>Inicio</a></li>
+			<li><a href='Login'>Inicio</a></li>
 			<li><a href='#'>Supermercados</a>
 				<ul>
 					<li><a href='#'>Continente</a></li>
@@ -52,3 +54,9 @@
 
 		</ul>
 	</div>
+	<div>
+<table id="Carrinho">
+  
+</table>
+</div>
+	</body>
