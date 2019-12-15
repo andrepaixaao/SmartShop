@@ -123,7 +123,7 @@ module.exports.getCarrinho = function (user,callback, next) {
         if (err) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
         }
-        conn.query("select Produto.idProduto,Produto.nomeProduto,CAST(SUM(CarrinhoQuantidade.quantidade/5)as decimal(10,0)) as quantidade,CAST(AVG(PrecoProduto.precoProduto)as decimal(10,2)) as preco,CAST(SUM(CarrinhoQuantidade.quantidade/3)as decimal(10,0))*CAST(AVG(PrecoProduto.precoProduto)as decimal(10,2)) as precototal from Produto left join CarrinhoQuantidade on CarrinhoQuantidade.idProduto=Produto.idProduto left join PrecoProduto on PrecoProduto.Produto_idProduto=Produto.idProduto where CarrinhoQuantidade.emailUtilizador='"+user+"'  GROUP by Produto.idProduto,Produto.nomeProduto,CarrinhoQuantidade.quantidade        ", function(err, results) {
+        conn.query("select Produto.idProduto,Produto.nomeProduto,CAST(SUM(CarrinhoQuantidade.quantidade/5)as decimal(10,0)) as quantidade,CAST(AVG(PrecoProduto.precoProduto)as decimal(10,2)) as preco,CAST(SUM(CarrinhoQuantidade.quantidade/5)as decimal(10,0))*CAST(AVG(PrecoProduto.precoProduto)as decimal(10,2)) as precototal from Produto left join CarrinhoQuantidade on CarrinhoQuantidade.idProduto=Produto.idProduto left join PrecoProduto on PrecoProduto.Produto_idProduto=Produto.idProduto where CarrinhoQuantidade.emailUtilizador='"+user+"'  GROUP by Produto.idProduto,Produto.nomeProduto,CarrinhoQuantidade.quantidade        ", function(err, results) {
 
             conn.release();
             if (err) {
