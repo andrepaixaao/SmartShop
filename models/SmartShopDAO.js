@@ -49,7 +49,6 @@ module.exports.getItems = function (callback, next) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
         }
         conn.query("select * from Produto", function(err, results) {
-            console.log(results);
             // VERY IMPORTANT: Always release a connection after you don't need it
             // You can make more then one query but in the last one release it
             conn.release();
