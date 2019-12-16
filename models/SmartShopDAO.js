@@ -178,7 +178,7 @@ module.exports.getProdutosFiltro = function (tipo,callback, next) {
         if (err) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
         }
-        conn.query("select idProduto,nomeProduto,AVG(precoProduto) from Produto inner join TipoProduto on Produto.idTipoProduto=TipoProduto.idTipoProduto inner join PrecoProduto on Produto.idTipoProduto=PrecoProduto.Produto_idProduto where Produto.idTipoProduto='"+tipo+"'group BY Produto.idProduto,Produto.nomeProduto", function(err, results) {
+        conn.query("select idProduto,imagemProduto,nomeProduto,AVG(precoProduto) from Produto inner join TipoProduto on Produto.idTipoProduto=TipoProduto.idTipoProduto inner join PrecoProduto on Produto.idTipoProduto=PrecoProduto.Produto_idProduto where Produto.idTipoProduto='"+tipo+"'group BY Produto.idProduto,Produto.nomeProduto,Produto.imagemProduto", function(err, results) {
             console.log(results);
             conn.release();
             if (err) {
