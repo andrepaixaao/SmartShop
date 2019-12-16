@@ -62,7 +62,7 @@ module.exports.verifyUser = function (data,cb, next) {
             cb(err, { code: 500, status: "Error connecting to database." })
             return;
         }
-        conn.query("SELECT emailUtilizador FROM Utilizador WHERE emailUtilizador = \""+ data.username +"\" AND passwordUtilizador ="+data.password+";", function (err, results) {
+        conn.query("SELECT emailUtilizador FROM Utilizador WHERE emailUtilizador = '"+ data.username +"' AND passwordUtilizador ='"+data.password+"';", function (err, results) {
             conn.release();
             if (err) {
                 cb(err, { code: 500, status: "O Utilizador não existe ou a password está incorreta" })

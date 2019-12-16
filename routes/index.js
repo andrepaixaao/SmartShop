@@ -26,4 +26,9 @@ router.get('/perfil', function(req, res, next) {
 router.get('/ranking', function(req, res, next) {
   res.render('ranking', { title: 'SmartShop' });
 });
+
+
+router.get('/filtros/:id', function(req, res, next) {
+  res.render('filtros', { title: 'SmartShop' });
+});
 module.exports = router;
