@@ -15,7 +15,6 @@
             }
             var html = "";
             for(i in res)  {
-                console.log(res[i]);
                 html += "<div class=box b>"+"<img src='"+res[i].imagemProduto+"'>" + res[i].nomeProduto +"<input type='button'  value='Adicionar ao Carrinho' id='"+res[i].idProduto+"' onclick=''> <input type='button' value='Ver Produto' id='"+res[i].idProduto+"' onclick=''></div>";           
 
             }
@@ -42,8 +41,7 @@
             }
             var html="<li><a href='Login'>Inicio</a></li><li><a href='#'>Supermercados</a><ul><li><a href='#'>Continente</a></li><li><a href='#'>Pingo Doce</a></li><li><a href='#'>Aldi</a></li><li><a href='#'>Lidl</a></li><li><a href='#'>Intermache</a></li></ul></li><li><a href='Login'>Produtos</a><ul>";
             for(i in res)  {
-                console.log("resultado="+res[i]);
-                html += "<li><a href='filtros/"+res[i].idTipoProduto+"'>"+res[i].nomeTipo+"</a></li>";
+                html += "<li onclick='filtro("+res[i].idTipoProduto+")'><a href='filtros'>"+res[i].nomeTipo+"</a></li>";
             }
             html+= "</ul>";
             dropmenu.innerHTML = html;
@@ -62,12 +60,8 @@
 
 function checkUtilizador()
 {
-    console.log("oi galera");
     var utilizador=document.getElementById("username").value;
     var password=document.getElementById("password").value;
-    console.log(utilizador);
-    console.log(password);
-
     $.ajax({
         url: "/api/utilizador",
         method : "post",
@@ -89,4 +83,9 @@ function checkUtilizador()
         });
     }
 
+    function filtro(valor)
+    {
+       sessionStorage.setItem("Opcao",valor);
+
+    }
 

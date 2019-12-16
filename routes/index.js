@@ -28,7 +28,7 @@ router.get('/ranking', function(req, res, next) {
 });
 
 
-router.get('/filtros/:id', function(req, res, next) {
+router.get('/filtros', function(req, res, next) {
   res.render('filtros', { title: 'SmartShop' });
 });
 module.exports = router;

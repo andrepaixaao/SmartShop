@@ -27,7 +27,7 @@ app.use('/api/produtos', produtosRouter);
 app.use('/api/utilizador', utilizadorRouter);
 app.use('/api/carrinho',carrinhoRouter);
 app.use('/api/ranking',rankingRouter);
-app.use('/filtros',filtrosRouter);
+app.use('/api/filtros',filtrosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
