@@ -44,16 +44,20 @@ window.onload=function(){
             }
             var html="<li><a href='Login'>Inicio</a></li><li><a href='#'>Supermercados</a><ul><li><a href='#'>Continente</a></li><li><a href='#'>Pingo Doce</a></li><li><a href='#'>Aldi</a></li><li><a href='#'>Lidl</a></li><li><a href='#'>Intermache</a></li></ul></li><li><a href='Login'>Produtos</a><ul>";
             for(i in res)  {
-                console.log(res[i]);
-                html += "<li><a href='"+res[i].idTipoProduto+"'>"+res[i].nomeTipo+"</a></li>";
-
+                html += "<li onclick='filtro("+res[i].idTipoProduto+")'><a href='filtros'>"+res[i].nomeTipo+"</a></li>";
             }
-            html+= "</ul><li><a href='perfil'>Meu Perfil</a></li>";
+            html+= "</ul>";
             dropmenu.innerHTML = html;
         },
         error: function(jqXHR, errStr, errThrown) {  
             console.log(errStr);
         }
     })
+}
+
+
+function filtro(valor)
+{
+   sessionStorage.setItem("Opcao",valor);
 
 }
