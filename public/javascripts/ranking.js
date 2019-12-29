@@ -100,12 +100,37 @@ window.onload=function(){
                 console.log(JSON.stringify(res));
                 return;
             }
-            var html="<li><a href='Login'>Inicio</a></li><li><a href='#'>Supermercados</a><ul><li><a href='#'>Continente</a></li><li><a href='#'>Pingo Doce</a></li><li><a href='#'>Aldi</a></li><li><a href='#'>Lidl</a></li><li><a href='#'>Intermache</a></li></ul></li><li><a href='Login'>Produtos</a><ul>";
+            var html="<li><a href='Login'>Inicio</a></li><li><a href='Login'>Produtos</a><ul>";
             for(i in res)  {
-                html += "<li onclick='filtro("+res[i].idTipoProduto+")'><a href='filtros'>"+res[i].nomeTipo+"</a></li>";
+                html += "</span><li onclick='filtro("+res[i].idTipoProduto+")'><a href='filtros'>"+res[i].nomeTipo+"</a></li>";
             }
             html+= "</ul>";
             dropmenu.innerHTML = html;
+        },
+        error: function(jqXHR, errStr, errThrown) {  
+            console.log(errStr);
+        }
+    })
+
+    $.ajax({
+        url:"/api/produtos/marca",
+        method:"get",
+        // sending in json
+        contentType:"application/json",
+        // receiving in json
+        dataType:"json",
+        success: function(res,status,jqXHR) {
+            console.log(status);
+            if (res.err) {
+                console.log(JSON.stringify(res));
+                return;
+            }
+            var html="<li><a href='Login'>Marca</a><ul>";
+            for(i in res)  {
+                html += "</span><li onclick='marca("+res[i].idMarcaProduto+")'><a href='marca'>"+res[i].marcaProduto+"</a></li>";
+            }
+            html+= "</ul>";
+            dropmenu.innerHTML += html;
         },
         error: function(jqXHR, errStr, errThrown) {  
             console.log(errStr);
@@ -117,5 +142,18 @@ window.onload=function(){
 function filtro(valor)
 {
    sessionStorage.setItem("Opcao",valor);
+}
 
+function marca(valor)
+{
+    sessionStorage.setItem("Marca",valor);
+}
+
+
+function Pesquisar()
+{
+    console.log("entrei");
+    var pesquisa=document.getElementById("pesquisa").value;
+    sessionStorage.setItem("Procura",pesquisa);
+    window.location.href='/Procura';
 }

@@ -82,7 +82,7 @@ body{
 }
 
 
-.navBar .search button{
+.navBar input[type=button]{
 
     float: right;
 
@@ -123,6 +123,7 @@ body{
   width: 220px;
   margin-left:83%;
   margin-top: 10px; 
+
      
 
 
@@ -333,7 +334,6 @@ body{
   }
  
 
-
   .pagCarrinho input[type=button] {
     display:block;
     margin-left:auto;
@@ -375,4 +375,6 @@ body{
     color: white;
   }
 
-  
+
+
+ 

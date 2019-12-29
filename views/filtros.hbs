@@ -5,11 +5,11 @@
 <title> SmartShop</title>
 	<div class="headerHome">
 		<div class="navBar">
-			<a href="/">SmartShop</a>
+			<a href="/login">SmartShop</a>
 			<div class="search">
 				<form>
-					<input type="text" placeholder="...">
-					<button>Pesquisar</button>
+					<input type="text" id="pesquisa"  placeholder="...">
+					<input type="button" value="Pesquisar" onclick='Pesquisar()' />
 				</form>
 			</div>
 		</div>
@@ -22,6 +22,8 @@
 				<div id="textUtilizador">
 				</div>
 				<input id="carrinho" type="button" value="Carrinho" onclick="location.href='carrinho';" />
+								 <input id="logout" type="button" value="Logout" onclick="location.href='/';" />
+
 			</div>
 		</div>
 		</div>

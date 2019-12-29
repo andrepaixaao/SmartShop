@@ -1,66 +1,7 @@
-    window.onload=function(){
-    var tabela = document.getElementById("wrapper");
-    $.ajax({
-        url:"/api/produtos",
-        method:"get",
-        // sending in json
-        contentType:"application/json",
-        // receiving in json
-        dataType:"json",
-        success: function(res,status,jqXHR) {
-            console.log(status);
-            if (res.err) {
-                console.log(JSON.stringify(res));
-                return;
-            }
-            var html = "";
-            for(i in res)  {
-                html += "<div class=box b>"+"<img src='"+res[i].imagemProduto+"'>" + res[i].nomeProduto +"<input type='button'  value='Adicionar ao Carrinho' id='"+res[i].idProduto+"' onclick=''> <input type='button' value='Ver Produto' id='"+res[i].idProduto+"' onclick=''></div>";           
-
-            }
-            tabela.innerHTML = html;
-        },
-        error: function(jqXHR, errStr, errThrown) {  
-            console.log(errStr);
-        }
-    })
-
-    var dropmenu=document.getElementById("drop_menu");
-    $.ajax({
-        url:"/api/produtos/tipo",
-        method:"get",
-        // sending in json
-        contentType:"application/json",
-        // receiving in json
-        dataType:"json",
-        success: function(res,status,jqXHR) {
-            console.log(status);
-            if (res.err) {
-                console.log(JSON.stringify(res));
-                return;
-            }
-            var html="<li><a href='Login'>Inicio</a></li><li><a href='#'>Supermercados</a><ul><li><a href='#'>Continente</a></li><li><a href='#'>Pingo Doce</a></li><li><a href='#'>Aldi</a></li><li><a href='#'>Lidl</a></li><li><a href='#'>Intermache</a></li></ul></li><li><a href='Login'>Produtos</a><ul>";
-            for(i in res)  {
-                html += "<li onclick='filtro("+res[i].idTipoProduto+")'><a href='filtros'>"+res[i].nomeTipo+"</a></li>";
-            }
-            html+= "</ul>";
-            dropmenu.innerHTML = html;
-        },
-        error: function(jqXHR, errStr, errThrown) {  
-            console.log(errStr);
-        }
-    })
-
-   
-
-    
-
-}
-
-
 function checkUtilizador()
 {
-    var utilizador=document.getElementById("username").value;
+    console.log("entrei")
+    var utilizador=document.getElementById("email").value;
     var password=document.getElementById("password").value;
     $.ajax({
         url: "/api/utilizador",
@@ -83,9 +24,4 @@ function checkUtilizador()
         });
     }
 
-    function filtro(valor)
-    {
-       sessionStorage.setItem("Opcao",valor);
-
-    }
-
+   

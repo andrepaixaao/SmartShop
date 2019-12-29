@@ -31,4 +31,12 @@ router.get('/ranking', function(req, res, next) {
 router.get('/filtros', function(req, res, next) {
   res.render('filtros', { title: 'SmartShop' });
 });
+
+router.get('/procura', function(req, res, next) {
+  res.render('procura', { title: 'SmartShop' });
+});
+
+router.get('/marca', function(req, res, next) {
+  res.render('marca', { title: 'SmartShop' });
+});
 module.exports = router;

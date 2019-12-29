@@ -137,7 +137,7 @@ module.exports.getCarrinho = function (user,callback, next) {
 
 
 module.exports.getRanking = function (user,callback, next) {
-    console.log("oi tou aqui");
+
     pool.getConnection(function(err,conn){
         if (err) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
@@ -173,12 +173,63 @@ module.exports.getTipo = function (callback, next) {
 
 
 module.exports.getProdutosFiltro = function (tipo,callback, next) {
-    console.log("oi tou aqui");
     pool.getConnection(function(err,conn){
         if (err) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
         }
         conn.query("select idProduto,imagemProduto,nomeProduto,AVG(precoProduto) from Produto inner join TipoProduto on Produto.idTipoProduto=TipoProduto.idTipoProduto inner join PrecoProduto on Produto.idTipoProduto=PrecoProduto.Produto_idProduto where Produto.idTipoProduto='"+tipo+"'group BY Produto.idProduto,Produto.nomeProduto,Produto.imagemProduto", function(err, results) {
+            console.log(results);
+            conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+
+module.exports.getProdutosProcura = function (procura,callback, next) {
+    pool.getConnection(function(err,conn){
+        if (err) {
+            callback(err,{code: 500, status: "Error in the connection to the database"})
+        }
+        conn.query("select * from Produto where nomeProduto like '%"+procura+"%' or descricaoProduto like '%"+procura+"%'", function(err, results) {
+            console.log(results);
+            conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+module.exports.getMarca = function (callback, next) {
+    pool.getConnection(function(err,conn){
+        if (err) {
+            callback(err,{code: 500, status: "Error in the connection to the database"})
+        }
+        conn.query("select * from MarcaProduto", function(err, results) {
+            console.log(results);
+            conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+module.exports.getProdutosMarca = function (marca,callback, next) {
+    pool.getConnection(function(err,conn){
+        if (err) {
+            callback(err,{code: 500, status: "Error in the connection to the database"})
+        }
+        conn.query("select * from Produto where idMarcaProduto='"+marca+"'", function(err, results) {
             console.log(results);
             conn.release();
             if (err) {
