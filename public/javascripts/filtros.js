@@ -1,13 +1,11 @@
 window.onload=function(){
     var campoUtilizador=document.getElementById("textUtilizador");
     campoUtilizador.innerHTML="<p class='Util'>Utilizador: <br>"+sessionStorage.getItem('Utilizador')+"</p>";
-        var tabela = document.getElementById("wrapper");
+    var tabela = document.getElementById("wrapper");
 $.ajax({
     url:"api/filtros/"+sessionStorage.getItem('Opcao'),
     method:"get",
-    // sending in json
     contentType:"application/json",
-    // receiving in json
     dataType:"json",
     success: function(res,status,jqXHR) {
         console.log(status);
@@ -18,8 +16,7 @@ $.ajax({
         var html = "";
         for(i in res)  {
             console.log(res[i]);
-            html += "<div class=box b>"+"<img src='"+res[i].imagemProduto+"'>" + res[i].nomeProduto +"<input type='button'  value='Adicionar ao Carrinho' id='"+res[i].idProduto+"' onclick='addCarrinho("+res[i].idProduto+")'> <input type='button' value='Ver Produto' id='"+res[i].idProduto+"' onclick=''></div>";           
-
+            html += "<div class=box b>"+"<img src='"+res[i].imagemProduto+"'>" + res[i].nomeProduto +"<input type='button'  value='Adicionar ao Carrinho' id='"+res[i].idProduto+"' onclick='addCarrinho("+res[i].idProduto+")'> <input type='button' value='Ver Produto' id='"+res[i].idProduto+"' onclick=''></div>";       
         }
         tabela.innerHTML = html;
     },
@@ -27,15 +24,11 @@ $.ajax({
         console.log(errStr);
     }
 })
-    
-
     var dropmenu=document.getElementById("drop_menu");
     $.ajax({
         url:"/api/produtos/tipo",
         method:"get",
-        // sending in json
         contentType:"application/json",
-        // receiving in json
         dataType:"json",
         success: function(res,status,jqXHR) {
             console.log(status);
@@ -54,8 +47,6 @@ $.ajax({
             console.log(errStr);
         }
     })
-
-
     $.ajax({
         url:"/api/produtos/marca",
         method:"get",
@@ -81,18 +72,14 @@ $.ajax({
         }
     })
 }
-
-
 function filtro(valor)
 {
    sessionStorage.setItem("Opcao",valor);
 }
-
 function marca(valor)
 {
     sessionStorage.setItem("Marca",valor);
 }
-
 function checkUtilizador()
 {
     var utilizador=document.getElementById("username").value;
@@ -109,15 +96,10 @@ function checkUtilizador()
         success: function(res, status){ 
             sessionStorage.setItem("Utilizador",utilizador);
             window.location.href='/Login';
-          
-          //
         }
-        
         , error : function() { alert(JSON.stringify('error')); }
-        
         });
     }
-
     function addCarrinho(idProduto)
 {
     $.ajax({
@@ -128,17 +110,11 @@ function checkUtilizador()
             produto:idProduto,
             username: sessionStorage.getItem('Utilizador'),
             }),
-        
         success: function(res, status){ 
-          //
         }
-        
         , error : function() { alert(JSON.stringify('error')); }
-        
         });
     }
-
-    
 function Pesquisar()
 {
     console.log("entrei");

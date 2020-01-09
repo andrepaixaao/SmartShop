@@ -27,7 +27,6 @@ window.onload=function(){
             console.log(errStr);
         }   
     })
-
     var dropmenu=document.getElementById("drop_menu");
     $.ajax({
         url:"/api/produtos/tipo",
@@ -53,7 +52,6 @@ window.onload=function(){
             console.log(errStr);
         }
     })
-
     $.ajax({
         url:"/api/produtos/marca",
         method:"get",
@@ -79,18 +77,21 @@ window.onload=function(){
         }
     })
 }
-
-
+function enter()
+{
+    if(event.keyCode==13)
+    {
+        Pesquisar();
+    }
+}
 function filtro(valor)
 {
    sessionStorage.setItem("Opcao",valor);
 }
-
 function marca(valor)
 {
     sessionStorage.setItem("Marca",valor);
 }
-
 function addCarrinho(idProduto)
 {
     console.log(idProduto);
@@ -116,12 +117,8 @@ function addCarrinho(idProduto)
     
         
     }
-
-
-
 function Pesquisar()
 {
-    console.log("entrei");
     var pesquisa=document.getElementById("pesquisa").value;
     sessionStorage.setItem("Procura",pesquisa);
     window.location.href='/Procura';

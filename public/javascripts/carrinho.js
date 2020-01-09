@@ -91,7 +91,6 @@ function marca(valor)
 
 function Pesquisar()
 {
-    console.log("entrei");
     var pesquisa=document.getElementById("pesquisa").value;
     sessionStorage.setItem("Procura",pesquisa);
     window.location.href='/Procura';

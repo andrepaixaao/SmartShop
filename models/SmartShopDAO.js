@@ -142,7 +142,7 @@ module.exports.getRanking = function (user,callback, next) {
         if (err) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
         }
-        conn.query("select sum(preco) as precoTotal,nome,idSupermercado from( select idProduto as idProduto,nomeMercado as nome, Supermercado_idSupermercado as idSupermercado, SUM(precoProduto) as preco from CarrinhoQuantidade inner join PrecoProduto on CarrinhoQuantidade.idProduto = PrecoProduto.Produto_idProduto inner join Supermercado on PrecoProduto.Supermercado_idSupermercado=Supermercado.idSupermercado where CarrinhoQuantidade.emailUtilizador='"+user+"' group by Supermercado_idSupermercado, CarrinhoQuantidade.idProduto) as calculo GROUP BY nome,idSupermercado order by precoTotal asc", function(err, results) {
+        conn.query("select CAST(sum(preco) as decimal(10,2)) as precoTotal,nome,idSupermercado from( select idProduto as idProduto,nomeMercado as nome, Supermercado_idSupermercado as idSupermercado, SUM(precoProduto) as preco from CarrinhoQuantidade inner join PrecoProduto on CarrinhoQuantidade.idProduto = PrecoProduto.Produto_idProduto inner join Supermercado on PrecoProduto.Supermercado_idSupermercado=Supermercado.idSupermercado where CarrinhoQuantidade.emailUtilizador='"+user+"' group by Supermercado_idSupermercado, CarrinhoQuantidade.idProduto) as calculo GROUP BY nome,idSupermercado order by precoTotal asc", function(err, results) {
             console.log(results);
             conn.release();
             if (err) {
