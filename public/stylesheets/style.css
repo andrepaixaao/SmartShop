@@ -392,4 +392,78 @@ body{
 
 
 
- 
+/**
+ * Tabs
+ */
+ .tabs {
+	display: flex;
+  flex-wrap: wrap;
+  margin-left:150px;
+  width: 70%;
+  margin-top:30px;
+ }
+.tabs label {
+	order: 1; 
+	display: block;
+	padding: 1rem 2rem;
+	margin-right: 0.2rem;
+	cursor: pointer;
+  background:  #4CAF50; 
+  font-weight: bold;
+  transition: background ease 0.2s;
+}
+.tabs .tab {
+  order: 99;
+  flex-grow: 1;
+	width: 100%;
+	display: none;
+  padding: 1rem;
+  background: #fff;
+}
+.tabs input[type="radio"] {
+	display: none;
+}
+.tabs input[type="radio"]:checked + label {
+	background: #fff;
+}
+.tabs input[type="radio"]:checked + label + .tab {
+	display: block;
+}
+
+@media (max-width: 45em) {
+  .tabs .tab,
+  .tabs label {
+    order: initial;
+  }
+  .tabs label {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 0.2rem;
+  }
+}
+
+
+.tab input[type=button] {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 160px;
+  border: 0;
+  padding: 8px;
+  border-radius: 7px;  
+  color: #ffffff;
+  font-size: 70%;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  margin-top:2px;
+}
+/**
+ * Generic Styling
+*/
+
+

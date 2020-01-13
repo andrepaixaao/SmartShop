@@ -240,3 +240,103 @@ module.exports.getProdutosMarca = function (marca,callback, next) {
         })
     })
 }
+
+module.exports.addLista = function (data,callback, next) {
+    
+    pool.getConnection(function (err, conn) {
+        if (err) {
+            cb(err, { code: 500, status: "Error connecting to database." })
+            return;
+        }
+        conn.query("Insert into Lista(utilizadorOrigem,nomeLista)values ('"+data.username+"','"+data.nome+"');",function (err, results) {;
+            conn.release();
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+module.exports.getIdLista = function (callback, next) {
+    pool.getConnection(function(err,conn){
+        if (err) {
+            callback(err,{code: 500, status: "Error in the connection to the database"})
+        }
+        conn.query("select max(idLista) as id from Lista", function(err, results) {
+            console.log(results);
+            conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+
+module.exports.addProdutosLista = function (data,callback, next) {
+    
+    pool.getConnection(function (err, conn) {
+        if (err) {
+            cb(err, { code: 500, status: "Error connecting to database." })
+            return;
+        }
+        console.log(data);
+        conn.query("insert into Lista_has_Produto(Lista_idLista,Produto_idProduto,quantidadeProduto) select '"+data.id+"',idProduto,quantidade from CarrinhoQuantidade where emailUtilizador='"+data.username+"';",function (err, results) {
+            console.log(err);
+            console.log(results);
+            conn.release();
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+module.exports.getMinhasListas = function (util,callback, next) {
+    pool.getConnection(function(err,conn){
+        if (err) {
+            callback(err,{code: 500, status: "Error in the connection to the database"})
+        }
+        conn.query("select idLista,nomeLista from Lista where utilizadorOrigem='"+util+"'", function(err, results) {
+            console.log(results);
+            conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+module.exports.ApagarCarrinho = function (util,callback, next) {
+    pool.getConnection(function(err,conn){
+        if (err) {
+            callback(err,{code: 500, status: "Error in the connection to the database"})
+        }
+        conn.query("delete from CarrinhoQuantidade where emailUtilizador='"+util+"'", function(err, results) {
+            console.log(results);
+            conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+module.exports.UsarLista = function (data,callback, next) {
+    
+    pool.getConnection(function (err, conn) {
+        if (err) {
+            cb(err, { code: 500, status: "Error connecting to database." })
+            return;
+        }
+        console.log(data);
+        conn.query("insert into CarrinhoQuantidade(quantidade,emailUtilizador,idProduto) select quantidadeProduto,'"+data.username+"',Produto_idProduto from Lista_has_Produto where Lista_idLista='"+data.idLista+"';",function (err, results) {
+            console.log(err);
+            console.log(results);
+            conn.release();
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
