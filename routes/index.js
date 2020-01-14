@@ -44,11 +44,8 @@ router.get('/Perfil', function(req, res, next) {
   res.render('perfil', { title: 'SmartShop' });
 });
 
-<<<<<<< HEAD
 router.get('/Lista', function(req, res, next) {
   res.render('lista', { title: 'SmartShop' });
 });
 
-=======
->>>>>>> master
 module.exports = router;

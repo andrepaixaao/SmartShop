@@ -339,7 +339,6 @@ module.exports.UsarLista = function (data,callback, next) {
             callback(false, {code: 200, status:"ok", data: results})
         })
     })
-<<<<<<< HEAD
 }
 
 module.exports.getLista = function (lista,callback, next) {
@@ -368,8 +367,7 @@ module.exports.PartilharLista = function (data,callback, next) {
         }
         console.log(data);
         conn.query("insert into Utilizador_has_Lista(Utilizador_emailUtilizador,Lista_idLista)values('"+data.username+"','"+data.idLista+"');",function (err, results) {
-            console.log(err);
-            console.log(results);
+
             conn.release();
             if (err) {
                 callback(err,{code: 500, status: "Error in a database query"})
@@ -378,6 +376,4 @@ module.exports.PartilharLista = function (data,callback, next) {
             callback(false, {code: 200, status:"ok", data: results})
         })
     })
-=======
->>>>>>> master
 }
