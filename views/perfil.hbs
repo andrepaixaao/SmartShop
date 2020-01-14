@@ -2,33 +2,64 @@
 
 <head>
 	<link rel="stylesheet" href="./stylesheets/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="javascripts/perfil.js"></script>
+			<script src="javascripts/geral.js"></script>
+
 </head>
 
 <body>
 	<div class="headerHome">
 		<div class="navBar">
-			<a href="login">SmartShop</a>
+			<a href="Login">SmartShop</a>
 			<div class="search">
 				<form>
 					<input type="text" id="pesquisa"  placeholder="...">
 					<input type="button" value="Pesquisar" onclick='Pesquisar()' />
 				</form>
+			</div>
 		</div>
 		<div class="logo">
 			<img src="logo_universidadeeuropeia_abr17-01.jpg" alt="HEY, FAZ UMA IMAGEM">
 		</div>
 		<div class="login-box">
 			<div class="form">
-				<img src="user.png">
-				<p class="Util">Nome de Utilizador: Teste </p>
-                <input id="carrinho" type="button" value="Carrinho" onclick="location.href='carrinho';" />
+				<img src="./images/user.png">
+				<div id="textUtilizador">
+				</div>
+				<input id="carrinho" type="button" value="Carrinho" onclick="location.href='carrinho';" />
 								 <input id="logout" type="button" value="Logout" onclick="location.href='/';" />
 
 			</div>
 		</div>
 	</div>
 
-<div class="drop">
+	<div class="drop">
 		<ul class="drop_menu" id="drop_menu">
 			</ul>
 	</div>
+	
+<div class="tabs">
+  <input type="radio" name="tabs" id="tabone" checked="checked">
+  <label for="tabone">Alterar Dados</label>
+  <div class="tab">
+	    <table id="Dados">
+		</table>
+
+  </div>
+  
+  <input type="radio" name="tabs" id="tabtwo">
+  <label for="tabtwo">Minhas Listas</label>
+  <div class="tab">
+	    <table id="MListas">
+		</table>
+  </div>
+  
+  <input type="radio" name="tabs" id="tabthree">
+  <label for="tabthree">Listas Partilhadas</label>
+  <div class="tab">
+  <table id="ListasP">
+		</table>
+  </div>
+</div>
+</body>

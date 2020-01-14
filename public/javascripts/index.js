@@ -1,10 +1,9 @@
 function checkUtilizador()
 {
-    console.log("entrei")
     var utilizador=document.getElementById("email").value;
     var password=document.getElementById("password").value;
     $.ajax({
-        url: "/api/utilizador",
+        url: "/api/utilizador/VerificarUser",
         method : "post",
         contentType : "application/json",
         data : JSON.stringify({ 

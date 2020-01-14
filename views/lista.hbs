@@ -1,11 +1,16 @@
+<!DOCTYPE html>
+
+<head>
+	<link rel="stylesheet" href="./stylesheets/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="javascripts/lista.js"></script>
+		<script src="javascripts/geral.js"></script>
+</head>
 
 <body>
-	<link rel="stylesheet" href="../stylesheets/style.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<title> SmartShop</title>
 	<div class="headerHome">
 		<div class="navBar">
-			<a href="/login">SmartShop</a>
+			<a href="Login">SmartShop</a>
 			<div class="search">
 				<form>
 					<input type="text" id="pesquisa"  placeholder="...">
@@ -14,7 +19,7 @@
 			</div>
 		</div>
 		<div class="logo">
-						<!--<img src="" alt="">//-->
+			<img src="logo_universidadeeuropeia_abr17-01.jpg" alt="HEY, FAZ UMA IMAGEM">
 		</div>
 		<div class="login-box">
 			<div class="form">
@@ -26,23 +31,20 @@
 
 			</div>
 		</div>
-		</div>
 	</div>
-
 
 	<div class="drop">
 		<ul class="drop_menu" id="drop_menu">
 			</ul>
 	</div>
-
-	<div class="wrapper" id="wrapper">
-	  </div>
-
-
-
-
-
+	<div class="partilharLista">
+		<table id="Lista">
+		</table>
+		<input id="partilhar" type="button" value="Usar Lista" onclick="usarLista()"/>
+				Partilhar lista com:
+		<input id="nomeUtilizador" type="text"  placeholder="Email do Utilizador"/>
+		<input id="partilharLista" type="button" value="Partilhar" onclick="partilharLista()"/>
+		</div>
+	</div>
 
 </body>
-<script src="../javascripts/filtros.js"></script>
-		<script src="javascripts/geral.js"></script>

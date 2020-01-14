@@ -39,4 +39,13 @@ router.get('/procura', function(req, res, next) {
 router.get('/marca', function(req, res, next) {
   res.render('marca', { title: 'SmartShop' });
 });
+
+router.get('/Perfil', function(req, res, next) {
+  res.render('perfil', { title: 'SmartShop' });
+});
+
+router.get('/Lista', function(req, res, next) {
+  res.render('lista', { title: 'SmartShop' });
+});
+
 module.exports = router;

@@ -1,0 +1,91 @@
+$(window).on('load', function () {
+    var campoUtilizador=document.getElementById("textUtilizador");
+    campoUtilizador.innerHTML="<p class='Util'>Utilizador: <br>"+sessionStorage.getItem('Utilizador')+"</p>";
+    var tabela=document.getElementById("Lista");
+    $.ajax({
+        url:"/api/utilizador/VerLista/"+sessionStorage.getItem('ListaNumero'),
+        method:"get",   
+        // sending in json
+        contentType:"application/json",
+        success: function(res) {
+            console.log("Entrei aqui");
+            if (res.err) {
+                console.log(JSON.stringify(res));
+                return;
+            }
+            var html = "<tr><th>Artigo</th><th>Quantidade</th><th>Preço Médio dos Artigo</th><th>Preco Total</th></tr>";
+            for(i in res)  {
+                html += "<tr><td>"+res[i].nomeProduto+"</td><td>"+res[i].quantidade+"</td><td>"+res[i].preco+" € </td><td>"+res[i].precototal+" € </td><td></tr>";
+
+            }
+            tabela.innerHTML = html;
+        },
+        error: function(jqXHR, errStr, errThrown) {
+            console.log("mas estou aqui");  
+            console.log(errStr);
+        }   
+    })
+
+});
+
+
+
+function usarLista()
+{
+     
+  $.ajax({
+    url:"/api/utilizador/ApagarCarrinho/"+sessionStorage.getItem('Utilizador'),
+    method:"get",   
+    // sending in json
+    contentType:"application/json",
+    success: function(res) {
+        if (res.err) {
+            console.log(JSON.stringify(res));
+            return;
+        }
+        $.ajax({
+          url:"/api/utilizador/UsarLista",
+          method : "post",
+          contentType : "application/json",
+          data : JSON.stringify({
+              idLista:sessionStorage.getItem('ListaNumero'),
+              username: sessionStorage.getItem('Utilizador'),
+              }),
+          success: function(res, status){ 
+              
+          }
+          
+          , error : function() { alert(JSON.stringify('error')); }
+          
+          });
+
+    },
+    error: function(jqXHR, errStr, errThrown) {
+        console.log("mas estou aqui");  
+        console.log(errStr);
+    }   
+})
+   
+}
+
+
+function partilharLista()
+{
+    var utilizador=document.getElementById("nomeUtilizador").value;
+    $.ajax({
+        url:"/api/utilizador/PartilharLista",
+        method : "post",
+        contentType : "application/json",
+        data : JSON.stringify({
+            idLista:sessionStorage.getItem('ListaNumero'),
+            username: utilizador,
+            }),
+        success: function(res, status){ 
+          
+        }
+        
+        , error : function() {
+             alert(JSON.stringify('Utilizador não existe ou a lista já está partilhada com este Utilizador')); }
+        
+        });
+}
