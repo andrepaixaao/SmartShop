@@ -339,6 +339,7 @@ module.exports.UsarLista = function (data,callback, next) {
             callback(false, {code: 200, status:"ok", data: results})
         })
     })
+<<<<<<< HEAD
 }
 
 module.exports.getLista = function (lista,callback, next) {
@@ -377,4 +378,6 @@ module.exports.PartilharLista = function (data,callback, next) {
             callback(false, {code: 200, status:"ok", data: results})
         })
     })
+=======
+>>>>>>> master
 }
