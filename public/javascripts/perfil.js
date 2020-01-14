@@ -25,6 +25,30 @@ $(window).on('load', function () {
             console.log(errStr);
         }   
     })
+
+    var tabelaP=document.getElementById("ListasP");
+    $.ajax({
+        url:"/api/utilizador/ListasPartilhadas/"+sessionStorage.getItem('Utilizador'),
+        method:"get",   
+        // sending in json
+        contentType:"application/json",
+        success: function(res) {
+            if (res.err) {
+                console.log(JSON.stringify(res));
+                return;
+            }
+            var html = "<tr><th>Nome Lista</th><th>Abrir</th><th>Usar lista </th></tr>";
+            for(i in res)  {
+                html += "<tr><td>"+res[i].nomeLista+"</td><td><input id='opcao' type='button' value='Ver / Partilhar Lista' onclick='verlista("+res[i].idLista+")'></td><td><input id='opcao' type='button' value='Usar Lista' onclick='usarlista("+res[i].idLista+")'></td></tr>";
+
+            }
+            tabelaP.innerHTML = html;
+        },
+        error: function(jqXHR, errStr, errThrown) {
+            console.log("mas estou aqui");  
+            console.log(errStr);
+        }   
+    })
 }
 });
 

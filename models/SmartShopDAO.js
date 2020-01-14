@@ -377,3 +377,20 @@ module.exports.PartilharLista = function (data,callback, next) {
         })
     })
 }
+
+module.exports.getListasPartilhadas = function (user,callback, next) {
+    pool.getConnection(function(err,conn){
+        if (err) {
+            callback(err,{code: 500, status: "Error in the connection to the database"})
+        }
+        conn.query("select Lista.idLista, Lista.nomeLista from Lista inner join Utilizador_has_Lista on Utilizador_has_Lista.Lista_idLista=Lista.idLista where Utilizador_emailUtilizador='"+user+"';", function(err, results) {
+            console.log(results);
+            conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
