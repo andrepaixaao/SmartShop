@@ -27,6 +27,8 @@
 				<img src="./images/user.png">
 				<div id="textUtilizador">
 				</div>
+				<div id="textCarrinho">
+				</div>
 				<input id="carrinho" type="button" value="Carrinho" onclick="location.href='carrinho';" />
 								 <input id="logout" type="button" value="Logout" onclick="location.href='/';" />
 
@@ -37,29 +39,28 @@
 	<div class="drop">
 		<ul class="drop_menu" id="drop_menu">
 			</ul>
-	</div>
-	
-<div class="tabs">
+	</div>  
+	<div class="tabs">
   <input type="radio" name="tabs" id="tabone" checked="checked">
-  <label for="tabone">Alterar Dados</label>
-  <div class="tab">
-	    <table id="Dados">
-		</table>
-
-  </div>
-  
-  <input type="radio" name="tabs" id="tabtwo">
-  <label for="tabtwo">Minhas Listas</label>
+  <label for="tabone">Minhas Listas</label>
   <div class="tab">
 	    <table id="MListas">
 		</table>
   </div>
   
-  <input type="radio" name="tabs" id="tabthree">
-  <label for="tabthree">Listas Partilhadas</label>
+  <input type="radio" name="tabs" id="tabtwo">
+  <label for="tabtwo">Listas Partilhadas</label>
   <div class="tab">
   <table id="ListasP">
 		</table>
+  </div>
+
+  <input type="radio" name="tabs" id="tabthree" >
+  <label for="tabthree">Alterar Dados</label>
+  <div class="tab">
+	    <table id="Dados">
+		</table>
+
   </div>
 </div>
 </body>

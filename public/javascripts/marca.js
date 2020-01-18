@@ -1,9 +1,7 @@
 $(window).on('load', function () {
-    var campoUtilizador=document.getElementById("textUtilizador");
-    campoUtilizador.innerHTML="<p class='Util'>Utilizador: <br>"+sessionStorage.getItem('Utilizador')+"</p>";
         var tabela = document.getElementById("wrapper");
 $.ajax({
-    url:"api/marca/"+sessionStorage.getItem('Marca'),
+    url:"api/produtos/filtros/marca/"+sessionStorage.getItem('Marca'),
     method:"get",
     // sending in json
     contentType:"application/json",

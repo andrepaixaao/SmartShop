@@ -26,6 +26,8 @@
 				<img src="./images/user.png">
 				<div id="textUtilizador">
 				</div>
+				<div id="textCarrinho">
+				</div>
 				<input id="carrinho" type="button" value="Carrinho" onclick="location.href='carrinho';" />
 								 <input id="logout" type="button" value="Logout" onclick="location.href='/';" />
 
@@ -37,15 +39,19 @@
 		<ul class="drop_menu" id="drop_menu">
 			</ul>
 	</div>
-	<div class="pagCarrinho">
+	<div class="parteCarrinho">
 		<table id="Carrinho">
 		</table>
-		<input id="ranking" type="button" value="Ranking" onclick="location.href='ranking';" />
+		</div>
+		<div class="pagCarrinho">
+		<input id="apagarCarrinho" type="button"  value="Apagar Carrinho" onclick="apagarCarrinho()" />
+		<input id="ranking" type="button" value="Ranking"  onclick="location.href='ranking';" />
+		</div>
 		<div class="lista">
 		Criar Lista:
 		<input id="nomelista" type="text" id="nomelista" placeholder="Nome da Lista"/>
 		<input id="guardarlista" type="button" value="Guardar Lista" onclick="nomeLista()"/>
 		</div>
-	</div>
+	
 
 </body>

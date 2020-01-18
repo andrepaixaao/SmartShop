@@ -1,3 +1,17 @@
+window.onload = function () {
+    navigator.geolocation.getCurrentPosition(getPosition);
+
+  }
+
+  function getPosition(position) {
+    //L.marker(position.coords.latitude, position.coords.longitude)
+    sessionStorage.setItem("lat",position.coords.latitude);
+    sessionStorage.setItem("long",position.coords.longitude);
+
+    console.log(sessionStorage.getItem("long"));
+    console.log(sessionStorage.getItem("lat"));
+}
+
 function checkUtilizador()
 {
     var utilizador=document.getElementById("email").value;

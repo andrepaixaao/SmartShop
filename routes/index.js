@@ -48,4 +48,8 @@ router.get('/Lista', function(req, res, next) {
   res.render('lista', { title: 'SmartShop' });
 });
 
+router.get('/Trajeto', function(req, res, next) {
+  res.render('trajeto', { title: 'SmartShop' });
+});
+
 module.exports = router;

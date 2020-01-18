@@ -89,12 +89,9 @@ module.exports.addCarrinho = function (data,cb, next) {
             return;
         }
         conn.query("Insert into CarrinhoQuantidade (quantidade,emailUtilizador,idProduto) values ('1','"+data.username+"','"+data.produto+"');",function (err, results) {
-            console.log(results);
             conn.release();
             
         })
-
-
     })
 }
 
@@ -107,8 +104,12 @@ module.exports.registarUser = function (data,cb, next) {
         }
         console.log(data);
         conn.query("Insert into Utilizador(emailUtilizador,nomeUtilizador,passwordUtilizador) values ('"+data.email+"','"+data.nome+"','"+data.password+"');",function (err, results) {
-            console.log(results);
             conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
         })
 
 
@@ -390,6 +391,109 @@ module.exports.getListasPartilhadas = function (user,callback, next) {
                 callback(err,{code: 500, status: "Error in a database query"})
                 return;
             } 
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+module.exports.getContagemCarrinho = function (user,callback, next) {
+    pool.getConnection(function(err,conn){
+        if (err) {
+            callback(err,{code: 500, status: "Error in the connection to the database"})
+        }
+        conn.query("select count(*) as contagem from CarrinhoQuantidade where emailUtilizador='"+user+"';", function(err, results) {
+            console.log(results);
+            conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+module.exports.ApagarCarrinho = function (util,callback, next) {
+    pool.getConnection(function(err,conn){
+        if (err) {
+            callback(err,{code: 500, status: "Error in the connection to the database"})
+        }
+        conn.query("delete from CarrinhoQuantidade where emailUtilizador='"+util+"'", function(err, results) {
+            console.log(results);
+            conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+module.exports.ApagarUn = function (data,callback, next) {
+    
+    pool.getConnection(function (err, conn) {
+        if (err) {
+            cb(err, { code: 500, status: "Error connecting to database." })
+            return;
+        }
+        console.log(data);
+        conn.query("delete from CarrinhoQuantidade where idProduto='"+data.produto+"' and emailUtilizador='"+data.username+"' LIMIT 1;;",function (err, results) {
+            console.log(err);
+            console.log(results);
+            conn.release();
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+
+module.exports.ApagarProduto = function (data,callback, next) {
+    
+    pool.getConnection(function (err, conn) {
+        if (err) {
+            cb(err, { code: 500, status: "Error connecting to database." })
+            return;
+        }
+        console.log(data);
+        conn.query("delete from CarrinhoQuantidade where idProduto='"+data.produto+"' and emailUtilizador='"+data.username+"';",function (err, results) {
+            console.log(err);
+            console.log(results);
+            conn.release();
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+module.exports.getRankingDistancia = function (data,callback, next) {
+    
+    pool.getConnection(function (err, conn) {
+        if (err) {
+            cb(err, { code: 500, status: "Error connecting to database." })
+            return;
+        }
+        console.log(data);
+        conn.query("SELECT CAST(ST_DISTANCE_SPHERE(POINT('"+data.lat+"','"+data.long+"'),coords)/1000 as decimal(10,2)) as distancia, idMoradaSupermercado,nomeMercado from MoradaSupermercado inner join Supermercado on MoradaSupermercado.Supermercado_idSupermercado=Supermercado.idSupermercado having distancia<="+data.maxdist+" order by distancia asc limit 5;",function (err, results) {
+            console.log(err);
+            console.log(results);
+            conn.release();
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+module.exports.getRankingRota = function (data,callback, next) {
+    
+    pool.getConnection(function (err, conn) {
+        if (err) {
+            cb(err, { code: 500, status: "Error connecting to database." })
+            return;
+        }
+        console.log(data);
+        conn.query(" SELECT ST_DISTANCE_SPHERE(POINT('"+data.lat+"','"+data.long+"'),coords) as distancia ,ST_X(coords)as lat,ST_Y(coords)as lon from MoradaSupermercado where Supermercado_idSupermercado='"+data.idSupermercado+"' order by distancia limit 1;",function (err, results) {
+            console.log(err);
+            console.log(results);
+            conn.release();
             callback(false, {code: 200, status:"ok", data: results})
         })
     })

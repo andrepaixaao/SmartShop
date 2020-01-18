@@ -2,9 +2,18 @@
 
 <head>
 	<link rel="stylesheet" href="./stylesheets/style.css">
-			        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="javascripts/procura.js"></script>
-				<script src="javascripts/geral.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+
+		
+	  <script src="./javascripts/leaflet-routing-machine.js"></script>
+	  <link rel="stylesheet" href="./stylesheets/leaflet-routing-machine.css">
+			        
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
 
 </head>
@@ -34,25 +43,16 @@
 
 	
 </div>
-			<div class="popup" >
-  <span class="popuptext" id="myPopup"></span>
-  </div>
-			</div>
-		</div>
-	</div>
+</div>
 
-	<div class="drop">
+<div class="drop">
 		<ul class="drop_menu" id="drop_menu">
 			</ul>
 	</div>
+	</div>
 
-	<div class="wrapper" id="wrapper">
-		
-	  </div>
+	<div id="map" class="mapDiv">
 
-
-
-
-
-
-</body>
+	</div>
+	<script src="javascripts/trajeto.js"></script>
+			<script src="javascripts/geral.js"></script>

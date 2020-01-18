@@ -12,7 +12,7 @@ body{
 }
 
 .Util{
-  font-size:18px;
+  font-size:16px;
   color:white;
 }
 .navBar{
@@ -335,14 +335,14 @@ body{
  
 
   .pagCarrinho input[type=button] {
-    display:block;
+    display:inline-block;
+    margin-right: auto;
     margin-left:auto;
-    margin-right:auto;
-    font-family: "Roboto", sans-serif;
+    font-family: "Robot"o, sans-serif;
     text-transform: uppercase;
     outline: 0;
     background: #4CAF50;
-    width: 160px;
+    width: 130px;
     border: 0;
     padding: 10px;
     border-radius: 15px;  
@@ -351,16 +351,20 @@ body{
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
-    margin-top:30px;
+    margin-top:15px;
+  }
+
+  .pagCarrinho{
+    text-align: center;
   }
  
  
 
   table {
-    margin-top:25px;
+    margin-top:35px;
     margin-left:150px;
     border-collapse: collapse;
-    width: 50%;
+    width: 70%;
   }
   
   th, td {
@@ -377,7 +381,7 @@ body{
 
   .lista
   {
-    margin-top:30px;
+    margin-top:10px;
     text-align:center;
   }
 
@@ -389,8 +393,27 @@ body{
     border-radius: 4px;
     font-size: 17px;
   }
+  .lista input[type=button]
+  {
+  display:inline-block;
+  margin-left:auto;
+  margin-right:auto;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 160px;
+  border: 0;
+  padding: 10px;
+  border-radius: 15px;  
+  color: #ffffff;
+  font-size: 70%;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  margin-top:2px;
 
-
+  }
 
 /**
  * Tabs
@@ -501,3 +524,120 @@ body{
   cursor: pointer;
   margin-top:15px;
 }
+
+.Carrinho{
+  font-size:16px;
+  color:white;
+}
+
+
+
+.parteCarrinho input[type=button] {
+  display:inline-block;
+  margin-left:auto;
+  margin-right:auto;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 160px;
+  border: 0;
+  padding: 10px;
+  border-radius: 15px;  
+  color: #ffffff;
+  font-size: 70%;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.distMax{
+  margin-left:40%;
+  float:left;
+}
+.distMax input[type=text]
+{
+  border:1px solid black;
+  border-radius: 4px;
+  font-size: 17px;
+  width:100px;
+  padding:4px;
+}
+
+.distMax input[type=button] {
+  display:inline-block;
+  margin-left:auto;
+  margin-right:auto;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 160px;
+  border: 0;
+  padding: 10px;
+  border-radius: 15px;  
+  color: #ffffff;
+  font-size: 70%;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  margin-top:15px;
+}
+.ranking
+{
+  display:inline-block;
+    margin-left:150px;
+    border-collapse: collapse;
+    width:40%;
+}
+
+.rankingD
+{
+  display:inline-block;
+    margin-left:3%;
+    border-collapse: collapse;
+    width: 40%;
+    margin-bottom:40px;
+}
+
+
+.ranking input[type=button] {
+  display:inline-block;
+  margin-left:auto;
+  margin-right:auto;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 150px;
+  border: 0;
+  padding: 7px;
+  border-radius: 15px;  
+  color: #ffffff;
+  font-size: 70%;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  margin-top:1px;
+}
+
+.ranking th, td {
+    text-align: center;
+    padding: 6px;
+  
+}
+
+
+.mapDiv
+{
+  text-align:center;
+  margin-left:50px;
+}
+#map {
+   height: 500px;
+   width:65%;
+   position: absolute; 
+   top:60%;
+   bottom:0; 
+   left:130px;
+   }

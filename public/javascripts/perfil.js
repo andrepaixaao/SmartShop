@@ -1,10 +1,8 @@
 $(window).on('load', function () {
 {
-  var campoUtilizador=document.getElementById("textUtilizador");
-    campoUtilizador.innerHTML="<p class='Util'>Utilizador: <br>"+sessionStorage.getItem('Utilizador')+"</p>";
     var tabela=document.getElementById("MListas");
     $.ajax({
-        url:"/api/utilizador/MinhasListas/"+sessionStorage.getItem('Utilizador'),
+        url:"/api/utilizador/lista/MinhasListas/"+sessionStorage.getItem('Utilizador'),
         method:"get",   
         // sending in json
         contentType:"application/json",
@@ -28,7 +26,7 @@ $(window).on('load', function () {
 
     var tabelaP=document.getElementById("ListasP");
     $.ajax({
-        url:"/api/utilizador/ListasPartilhadas/"+sessionStorage.getItem('Utilizador'),
+        url:"/api/utilizador/lista/ListasPartilhadas/"+sessionStorage.getItem('Utilizador'),
         method:"get",   
         // sending in json
         contentType:"application/json",
@@ -62,18 +60,8 @@ function verlista(numero)
 function usarlista(numero)
 {
  
-  $.ajax({
-    url:"/api/utilizador/ApagarCarrinho/"+sessionStorage.getItem('Utilizador'),
-    method:"get",   
-    // sending in json
-    contentType:"application/json",
-    success: function(res) {
-        if (res.err) {
-            console.log(JSON.stringify(res));
-            return;
-        }
         $.ajax({
-          url:"/api/utilizador/UsarLista",
+          url:"/api/utilizador/lista/UsarLista",
           method : "post",
           contentType : "application/json",
           data : JSON.stringify({
@@ -82,19 +70,12 @@ function usarlista(numero)
               }),
           
           success: function(res, status){ 
-              
+            alert("O seu carrinho foi alterado");
+            window.location='/perfil';
           }
           
           , error : function() { alert(JSON.stringify('error')); }
           
-          });
+          });   
 
-    },
-    error: function(jqXHR, errStr, errThrown) {
-        console.log("mas estou aqui");  
-        console.log(errStr);
-    }   
-})
-    
-        
     }

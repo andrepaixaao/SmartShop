@@ -26,6 +26,8 @@
 				<img src="./images/user.png">
 				<div id="textUtilizador">
 				</div>
+				<div id="textCarrinho">
+				</div>
                 <input id="carrinho" type="button" value="Carrinho" onclick="location.href='carrinho';" />
 								 <input id="logout" type="button" value="Logout" onclick="location.href='/';" />
 
@@ -37,8 +39,19 @@
 		<ul class="drop_menu" id="drop_menu">
 			</ul>
 	</div>
-	<div>
-        <table id="Ranking">
+
+
+		<div class="distMax">
+		Alterar distância máxima:
+		<input id="maxdist" type="text"  placeholder="Dist. Max"/>
+		<input id="distMaxBut" type="button" value="Alterar Dist." onclick="altDist()"/>
+		</div>
+		<div id="rank">
+        <table id="Ranking" class="ranking">
 		</table>
+
+		<table id="RankingDistancia" class="rankingD">
+		</table>
+		</div>
 	</div>
 </body>

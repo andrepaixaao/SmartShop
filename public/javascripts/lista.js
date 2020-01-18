@@ -1,9 +1,7 @@
 $(window).on('load', function () {
-    var campoUtilizador=document.getElementById("textUtilizador");
-    campoUtilizador.innerHTML="<p class='Util'>Utilizador: <br>"+sessionStorage.getItem('Utilizador')+"</p>";
     var tabela=document.getElementById("Lista");
     $.ajax({
-        url:"/api/utilizador/VerLista/"+sessionStorage.getItem('ListaNumero'),
+        url:"/api/utilizador/lista/VerLista/"+sessionStorage.getItem('ListaNumero'),
         method:"get",   
         // sending in json
         contentType:"application/json",
@@ -32,19 +30,8 @@ $(window).on('load', function () {
 
 function usarLista()
 {
-     
-  $.ajax({
-    url:"/api/utilizador/ApagarCarrinho/"+sessionStorage.getItem('Utilizador'),
-    method:"get",   
-    // sending in json
-    contentType:"application/json",
-    success: function(res) {
-        if (res.err) {
-            console.log(JSON.stringify(res));
-            return;
-        }
         $.ajax({
-          url:"/api/utilizador/UsarLista",
+          url:"/api/utilizador/lista/UsarLista",
           method : "post",
           contentType : "application/json",
           data : JSON.stringify({
@@ -52,20 +39,13 @@ function usarLista()
               username: sessionStorage.getItem('Utilizador'),
               }),
           success: function(res, status){ 
-              
+            alert("O seu carrinho foi alterado");
+            window.location='/perfil'
           }
           
           , error : function() { alert(JSON.stringify('error')); }
           
           });
-
-    },
-    error: function(jqXHR, errStr, errThrown) {
-        console.log("mas estou aqui");  
-        console.log(errStr);
-    }   
-})
-   
 }
 
 
@@ -73,7 +53,7 @@ function partilharLista()
 {
     var utilizador=document.getElementById("nomeUtilizador").value;
     $.ajax({
-        url:"/api/utilizador/PartilharLista",
+        url:"/api/utilizador/lista/PartilharLista",
         method : "post",
         contentType : "application/json",
         data : JSON.stringify({
@@ -88,4 +68,6 @@ function partilharLista()
              alert(JSON.stringify('Utilizador não existe ou a lista já está partilhada com este Utilizador')); }
         
         });
+        document.getElementById("nomeUtilizador").value="";
+        alert("Lista partilhada com sucesso");
 }
