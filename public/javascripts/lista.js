@@ -13,7 +13,7 @@ $(window).on('load', function () {
             }
             var html = "<tr><th>Artigo</th><th>Quantidade</th><th>Preço Médio dos Artigo</th><th>Preco Total</th></tr>";
             for(i in res)  {
-                html += "<tr><td>"+res[i].nomeProduto+"</td><td>"+res[i].quantidade+"</td><td>"+res[i].preco+" € </td><td>"+res[i].precototal+" € </td><td></tr>";
+                html += "<tr><td onclick='verProd("+res[i].idProduto+")'>"+res[i].nomeProduto+"</td><td>"+res[i].quantidade+"</td><td>"+res[i].preco+" € </td><td>"+res[i].precototal+" € </td><td></tr>";
 
             }
             tabela.innerHTML = html;

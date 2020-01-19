@@ -1,11 +1,11 @@
 var pool = require('./connection').pool;
 
-module.exports.getUtilizadores = function(utilizador,callback, next) {
+module.exports.getUtilizador = function(utilizador,callback, next) {
     pool.getConnection(function(err,conn){  
         if (err) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
         }
-        pool.query("select * from Utilizador where emailUtilizador=?",utilizador, function(err, results) {
+        pool.query("select nomeUtilizador from Utilizador where emailUtilizador='"+utilizador+"';", function(err, results) {
             pool.releaseConnection;
             if (err) {
                 callback(err,{code: 500, status: "Error in a database query"})
@@ -15,7 +15,6 @@ module.exports.getUtilizadores = function(utilizador,callback, next) {
         })
        
     })
-
 }
 
 module.exports.newUtilizadores = function(utilizador,nome,password,callback, next) {
@@ -42,7 +41,7 @@ module.exports.getItems = function (callback, next) {
         if (err) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
         }
-        conn.query("select * from Produto", function(err, results) {
+        conn.query("select Produto.idProduto,Produto.imagemProduto,Produto.nomeProduto,CAST(AVG(PrecoProduto.precoProduto)as decimal(10,2)) as preco from Produto left join PrecoProduto on PrecoProduto.Produto_idProduto=Produto.idProduto group by Produto.idProduto,Produto.nomeProduto,Produto.imagemProduto; ", function(err, results) {
             conn.release();
             if (err) {
                 callback(err,{code: 500, status: "Error in a database query"})
@@ -81,7 +80,7 @@ module.exports.verifyUser = function (data,cb, next) {
     })
 }
 
-module.exports.addCarrinho = function (data,cb, next) {
+module.exports.addCarrinho = function (data,callback, next) {
     
     pool.getConnection(function (err, conn) {
         if (err) {
@@ -90,6 +89,11 @@ module.exports.addCarrinho = function (data,cb, next) {
         }
         conn.query("Insert into CarrinhoQuantidade (quantidade,emailUtilizador,idProduto) values ('1','"+data.username+"','"+data.produto+"');",function (err, results) {
             conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
             
         })
     })
@@ -178,7 +182,7 @@ module.exports.getProdutosFiltro = function (tipo,callback, next) {
         if (err) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
         }
-        conn.query("select idProduto,imagemProduto,nomeProduto,AVG(precoProduto) from Produto inner join TipoProduto on Produto.idTipoProduto=TipoProduto.idTipoProduto inner join PrecoProduto on Produto.idTipoProduto=PrecoProduto.Produto_idProduto where Produto.idTipoProduto='"+tipo+"'group BY Produto.idProduto,Produto.nomeProduto,Produto.imagemProduto", function(err, results) {
+        conn.query("select Produto.idProduto,Produto.imagemProduto,Produto.nomeProduto,CAST(AVG(PrecoProduto.precoProduto)as decimal(10,2)) as preco from Produto left join PrecoProduto on PrecoProduto.Produto_idProduto=Produto.idProduto  where Produto.idTipoProduto='"+tipo+"'group by Produto.idProduto,Produto.nomeProduto,Produto.imagemProduto", function(err, results) {
             console.log(results);
             conn.release();
             if (err) {
@@ -196,10 +200,11 @@ module.exports.getProdutosProcura = function (procura,callback, next) {
         if (err) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
         }
-        conn.query("select * from Produto where nomeProduto like '%"+procura+"%' or descricaoProduto like '%"+procura+"%'", function(err, results) {
+        conn.query("select Produto.idProduto,Produto.imagemProduto,Produto.nomeProduto,CAST(AVG(PrecoProduto.precoProduto)as decimal(10,2)) as preco from Produto left join PrecoProduto on PrecoProduto.Produto_idProduto=Produto.idProduto where nomeProduto like '%"+procura+"%' or descricaoProduto like '%"+procura+"%' group by Produto.idProduto,Produto.nomeProduto,Produto.imagemProduto", function(err, results) {
             console.log(results);
             conn.release();
             if (err) {
+                console.log(err);
                 callback(err,{code: 500, status: "Error in a database query"})
                 return;
             } 
@@ -230,7 +235,7 @@ module.exports.getProdutosMarca = function (marca,callback, next) {
         if (err) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
         }
-        conn.query("select * from Produto where idMarcaProduto='"+marca+"'", function(err, results) {
+        conn.query("select Produto.idProduto,Produto.imagemProduto,Produto.nomeProduto,CAST(AVG(PrecoProduto.precoProduto)as decimal(10,2)) as preco from Produto left join PrecoProduto on PrecoProduto.Produto_idProduto=Produto.idProduto where idMarcaProduto='"+marca+"' group by Produto.idProduto,Produto.nomeProduto,Produto.imagemProduto ", function(err, results) {
             console.log(results);
             conn.release();
             if (err) {
@@ -498,3 +503,37 @@ module.exports.getRankingRota = function (data,callback, next) {
         })
     })
 }
+
+module.exports.getProduto = function (idProd,callback, next) {
+    pool.getConnection(function(err,conn){
+        if (err) {
+            callback(err,{code: 500, status: "Error in the connection to the database"})
+        }
+        conn.query("select Produto.descricaoProduto,Produto.idProduto,Produto.imagemProduto,Produto.nomeProduto,CAST(AVG(PrecoProduto.precoProduto)as decimal(10,2)) as preco from Produto left join PrecoProduto on PrecoProduto.Produto_idProduto=Produto.idProduto where Produto.idProduto="+idProd+" group by Produto.idProduto,Produto.nomeProduto,Produto.imagemProduto,Produto.descricaoProduto; ", function(err, results) {
+            conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+module.exports.getProdutosSugestao = function (idProd,callback, next) {
+    pool.getConnection(function(err,conn){
+        if (err) {
+            callback(err,{code: 500, status: "Error in the connection to the database"})
+        }
+        conn.query("select Produto.imagemProduto,Produto.idProduto from Produto where idProduto!="+idProd+" and idMarcaProduto in(select idMarcaProduto from Produto where idProduto="+idProd+");", function(err, results) {
+            conn.release();
+            if (err) {
+                callback(err,{code: 500, status: "Error in a database query"})
+                return;
+            } 
+            callback(false, {code: 200, status:"ok", data: results})
+        })
+    })
+}
+
+

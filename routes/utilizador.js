@@ -136,6 +136,20 @@ router.get('/carrinho/ApagarCarrinho/:id', function(req, res, next){
     },next)
   });
 
+  
+  router.get('/nome/:id', function(req, res, next){
+    var id=req.params.id;
+      smartshopDAO.getUtilizador(id,function(err,result){
+        if (err) {
+            res.statusMessage=result.status;
+            res.status(result.code).json(err);
+            return;
+        }
+        console.log(result.data);
+        res.status(result.code).send(result.data);
+    },next)
+  });
+
 
 
 

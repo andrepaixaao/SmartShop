@@ -3,8 +3,9 @@
 <head>
 	<link rel="stylesheet" href="./stylesheets/style.css">
 			        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="javascripts/ranking.js"></script>
-			<script src="javascripts/geral.js"></script>
+		<script src="javascripts/produto.js"></script>
+				<script src="javascripts/geral.js"></script>
+
 
 </head>
 
@@ -13,8 +14,8 @@
 		<div class="navBar">
 			<a href="login">SmartShop</a>
 			<div class="search">
-				
-					<input type="text" id="pesquisa"  placeholder="...">
+			
+					<input type="text" id="pesquisa"  placeholder="Pesquisa" onkeydown="enter()"/>
 					<input type="button" value="Pesquisar" onclick='Pesquisar()' />
 				
 			</div>
@@ -30,29 +31,37 @@
 				<div id="textCarrinho">
 				</div>
                 <input id="carrinho" type="button" value="Carrinho" onclick="location.href='carrinho';" />
-								 <input id="logout" type="button" value="Logout" onclick="location.href='/';" />
-
+				 <input id="logout" type="button" value="Logout" onclick="location.href='/';" />
 	
 </div>
-</div>
+			<div class="popup" >
+  <span class="popuptext" id="myPopup"></span>
+  </div>
+			</div>
+		</div>
+	</div>
 
-<div class="drop">
+	<div class="drop">
 		<ul class="drop_menu" id="drop_menu">
 			</ul>
 	</div>
 
+	<div class="wrapper" id="wrapper">
+		
+	  </div>
 
-		<div class="distMax">
-		Alterar distância máxima:
-		<input id="maxdist" type="text"  placeholder="Dist. Max"/>
-		<input id="distMaxBut" type="button" value="Alterar Dist." onclick="altDist()"/>
-		</div>
-		<div id="rank">
-        <table id="Ranking" class="ranking">
-		</table>
+	  <div id="produto" class="produto">
+	  </div>
 
-		<table id="RankingDistancia" class="rankingD">
-		</table>
-		</div>
-	</div>
+<div class="hr-nav-1">
+	<h1>Produtos Sugeridos:</h1>
+    <nav class="nav-container" id="nav-container">
+    </nav>
+</div>
+</div>
+
+
+
+
+
 </body>

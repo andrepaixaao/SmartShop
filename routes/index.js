@@ -52,4 +52,8 @@ router.get('/Trajeto', function(req, res, next) {
   res.render('trajeto', { title: 'SmartShop' });
 });
 
+router.get('/Produto', function(req, res, next) {
+  res.render('produto', { title: 'SmartShop' });
+});
+
 module.exports = router;

@@ -1,7 +1,8 @@
 $(document).ready(function(){
     produtosCarrinho();
+    nomeUtilizador();
     var campoUtilizador=document.getElementById("textUtilizador");
-    campoUtilizador.innerHTML="<p class='Util'>Utilizador: <br>"+sessionStorage.getItem('Utilizador')+"</p>";
+    campoUtilizador.innerHTML="<p class='Util'>Utilizador: <br>"+sessionStorage.getItem('Nome')+"</p>";
     var dropmenu=document.getElementById("drop_menu");
     $.ajax({
         url:"/api/produtos/tipo",
@@ -78,15 +79,14 @@ function addCarrinho(idProduto)
             }),
         
         success: function(res, status){ 
-            var popup = document.getElementById("myPopup");
-            popup.classList.toggle("show");
+            produtosCarrinho();
         }
         
         , error : function() { alert(JSON.stringify('error')); }
         
         });
     
-        produtosCarrinho();
+        
     }
 function Pesquisar()
 {
@@ -116,4 +116,32 @@ function produtosCarrinho()
         }
     })
 }
+function nomeUtilizador()
+{
+$.ajax({
+    url:"api/utilizador/nome/"+sessionStorage.getItem('Utilizador'),
+    method:"get",
+    contentType:"application/json",
+    dataType:"json",
+    success: function(res,status,jqXHR) {
+        console.log(status);
+        if (res.err) {
+            console.log(JSON.stringify(res));
+            return;
+        }
+        nome=res[0].nomeUtilizador;
+        sessionStorage.setItem("Nome",nome);
 
+    },
+    error: function(jqXHR, errStr, errThrown) {  
+        console.log(errStr);
+    }
+})
+}
+
+function verProd(idProduto)
+{
+    sessionStorage.setItem("idProduto",idProduto);
+    window.location.href='/Produto';
+
+}

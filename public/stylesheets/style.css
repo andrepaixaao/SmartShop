@@ -26,7 +26,6 @@ body{
     background-color: #262626;
 
     position: fixed; 
-
     top: 10px; 
     float:right;  
     border-radius: 15px;
@@ -118,16 +117,7 @@ body{
 
 
 
-.login-box
-{
-  width: 220px;
-  margin-left:83%;
-  margin-top: 10px; 
 
-     
-
-
-}
 
 .form {
     
@@ -233,12 +223,7 @@ body{
   color: #EF3B3A;
 }
 
-  .logo .img
-  {
-    width:30%;
-    height:auto;
-
-  }
+ 
 
   .drop_menu {
     background:#262626;
@@ -641,3 +626,76 @@ body{
    bottom:0; 
    left:130px;
    }
+   .produto {
+    margin-top: 5px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size:17px;
+    margin-left:30%;
+    margin-right:30%;
+  }
+  .produto img
+  {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.produto input[type=button] {
+  display:inline-block;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 200px;
+  border: 0;
+  padding: 10px;
+  margin-left:5px;
+  border-radius: 15px;  
+  color: #ffffff;
+  font-size: 70%;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  margin-top:5px;
+}
+
+.hr-nav-1 .nav-container {
+  overflow: auto;
+  white-space: nowrap;
+  overflow-x: auto;
+  max-width: 48em;
+  margin: 1rem auto;
+  text-align: center;
+  border-style: groove;
+  border-radius: 5px;
+}
+.hr-nav-1 .nav-item {
+  display: inline-block;
+  padding: 8px 10px;
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+}
+.hr-nav-1 h1{
+  font-size:15px;
+  text-align: center;
+
+}
+
+.logo{
+  margin-left:150px;
+  display:inline-block;
+  width:70%;
+  text-align:center;
+  margin-top:3.5%;
+}
+
+.login-box
+{
+  width: 220px;
+  margin-top: 10px; 
+  display:inline-block;
+  margin-left:1%;
+  position:fixed;
+}

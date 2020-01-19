@@ -13,7 +13,7 @@ $(window).on('load', function () {
             }
             var html = "<tr><th>Artigo</th><th>Quantidade</th><th>Preço Médio</th><th>Preco Total</th><th></th><th></th><th></th><th></th></tr>";
             for(i in res)  {
-                html += "<tr><td>"+res[i].nomeProduto+"</td><td>"+res[i].quantidade+"</td><td>"+res[i].preco+" € </td><td>"+res[i].precototal+" € </td><td><input id='opcao' type='button' value='Apagar 1 un.' onclick='apagarUn("+res[i].idProduto+")'></td><td><input id='opcao' type='button' value='Adicionar 1 Un.' onclick='addUn("+res[i].idProduto+")'></td><td><input id='opcao' type='button' value='Apagar Produto' onclick='apagarProd("+res[i].idProduto+")'></td><td></tr>";
+                html += "<tr><td onclick='verProd("+res[i].idProduto+")'>"+res[i].nomeProduto+"</td><td>"+res[i].quantidade+"</td><td>"+res[i].preco+" € </td><td>"+res[i].precototal+" € </td><td><input id='opcao' type='button' value='Apagar 1 un.' onclick='apagarUn("+res[i].idProduto+")'></td><td><input id='opcao' type='button' value='Adicionar 1 Un.' onclick='addUn("+res[i].idProduto+")'></td><td><input id='opcao' type='button' value='Apagar Produto' onclick='apagarProd("+res[i].idProduto+")'></td><td></tr>";
 
             }
             tabela.innerHTML = html;
@@ -129,7 +129,6 @@ $.ajax({
 
 function apagarCarrinho()
 {
-
     $.ajax({
         url:"/api/utilizador/carrinho/ApagarCarrinho/"+sessionStorage.getItem('Utilizador'),
         method:"get",   
