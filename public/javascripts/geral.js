@@ -1,8 +1,7 @@
 $(document).ready(function(){
-    produtosCarrinho();
-    nomeUtilizador();
     var campoUtilizador=document.getElementById("textUtilizador");
     campoUtilizador.innerHTML="<p class='Util'>Utilizador: <br>"+sessionStorage.getItem('Nome')+"</p>";
+    produtosCarrinho();
     var dropmenu=document.getElementById("drop_menu");
     $.ajax({
         url:"/api/produtos/tipo",

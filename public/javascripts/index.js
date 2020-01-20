@@ -26,8 +26,9 @@ function checkUtilizador()
             }),
         
         success: function(res, status){ 
-            sessionStorage.setItem("Utilizador",utilizador);
-            window.location.href='/Login';
+          sessionStorage.setItem("Utilizador",utilizador);
+          nomeUtilizador();
+            
           
           //
         }
@@ -37,4 +38,27 @@ function checkUtilizador()
         });
     }
 
-   
+
+function nomeUtilizador()
+{
+$.ajax({
+    url:"api/utilizador/nome/"+sessionStorage.getItem('Utilizador'),
+    method:"get",
+    contentType:"application/json",
+    dataType:"json",
+    success: function(res,status,jqXHR) {
+        console.log(status);
+        if (res.err) {
+            console.log(JSON.stringify(res));
+            return;
+        }
+        nome=res[0].nomeUtilizador;
+        sessionStorage.setItem("Nome",nome);
+        window.location.href='/Login';
+
+    },
+    error: function(jqXHR, errStr, errThrown) {  
+        console.log(errStr);
+    }
+})
+}

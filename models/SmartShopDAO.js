@@ -5,9 +5,10 @@ module.exports.getUtilizador = function(utilizador,callback, next) {
         if (err) {
             callback(err,{code: 500, status: "Error in the connection to the database"})
         }
-        pool.query("select nomeUtilizador from Utilizador where emailUtilizador='"+utilizador+"';", function(err, results) {
-            pool.releaseConnection;
+       conn.query("select nomeUtilizador from Utilizador where emailUtilizador='"+utilizador+"';", function(err, results) {
+            conn.release();
             if (err) {
+                console.log(err);
                 callback(err,{code: 500, status: "Error in a database query"})
                 return;
             } 
