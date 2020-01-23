@@ -115,28 +115,6 @@ function produtosCarrinho()
         }
     })
 }
-function nomeUtilizador()
-{
-$.ajax({
-    url:"api/utilizador/nome/"+sessionStorage.getItem('Utilizador'),
-    method:"get",
-    contentType:"application/json",
-    dataType:"json",
-    success: function(res,status,jqXHR) {
-        console.log(status);
-        if (res.err) {
-            console.log(JSON.stringify(res));
-            return;
-        }
-        nome=res[0].nomeUtilizador;
-        sessionStorage.setItem("Nome",nome);
-
-    },
-    error: function(jqXHR, errStr, errThrown) {  
-        console.log(errStr);
-    }
-})
-}
 
 function verProd(idProduto)
 {

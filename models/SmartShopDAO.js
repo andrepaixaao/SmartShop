@@ -73,7 +73,6 @@ module.exports.verifyUser = function (data,cb, next) {
                 cb(err, { code: 500, status: "O Utilizador não existe ou a password está incorreta" })
                 return;
             }
-
             cb(false, { code: 200, status: "ok", data: results })
         })
 
@@ -100,7 +99,7 @@ module.exports.addCarrinho = function (data,callback, next) {
     })
 }
 
-module.exports.registarUser = function (data,cb, next) {
+module.exports.registarUser = function (data,callback, next) {
     
     pool.getConnection(function (err, conn) {
         if (err) {
@@ -116,8 +115,6 @@ module.exports.registarUser = function (data,cb, next) {
             } 
             callback(false, {code: 200, status:"ok", data: results})
         })
-
-
     })
 }
 
