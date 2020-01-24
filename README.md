@@ -1,7 +1,6 @@
-Título: SmartShop
+#Título: SmartShop
 
 Participantes:
-
 Número
 Nome
 50037141
