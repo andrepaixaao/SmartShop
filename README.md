@@ -4,6 +4,7 @@
 André Paixão - 50037141
 Hugo Varela - 50037177
 
+
 # Enquadramento:
 O projeto será uma plataforma de organização de compras de produtos de supermercado, nesta será possível comparar preços de produtos em diferentes lojas, assim como organizar o seu “carrinho de compras”.
 Os sites “kuantokusta” e “shopmania” são semelhantes ao que estamos a apresentar como proposta de projeto, sendo que ambos identificam elementos em diferentes lojas, ajudando o cliente a comparar os preços existentes. O nosso projeto irá apresentar uma comparação em ranking não só em preços mais reduzidos, como em menores distâncias, sendo esta a principal diferença em relação aos sites apresentados. A apresentação de uma sugestão de trajeto para o supermercado escolhido permitirá ao utilizador poupar tempo, isto pois não terá de procurar por um trajeto noutra aplicação ou website, sendo esta outra mais valia.
