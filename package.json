@@ -17,7 +17,7 @@
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "leaflet-routing-machine": "^3.2.12",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "morgan": "~1.9.1",
     "mysql": "^2.17.1"
   }
